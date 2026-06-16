@@ -48,21 +48,35 @@ AI-Driven-Development-template/
 
 ### 既存プロジェクトへの導入手順 (PowerShell)
 
-すでに存在するプロジェクトに本テンプレートのAI駆動開発環境（[.agents](file:///C:/Users/dxpro/skills-codelab/.agents) フォルダ）を導入したい場合は、対象プロジェクトのルートディレクトリでPowerShellを開き、以下のコマンドを実行してください。
+すでに存在するプロジェクトに本テンプレートのAI駆動開発環境（`.agents` フォルダ）を導入したい場合は、対象プロジェクトのルートディレクトリでPowerShellを開き、以下のコマンドを実行してください。
+
+#### GitHub からインストール（推奨・外部向け）
+
+```powershell
+Invoke-Expression (Invoke-RestMethod -Uri "https://raw.githubusercontent.com/KotaSugiki/AI-Driven-Development-template/main/install.ps1")
+```
+
+#### Gitea からインストール（社内向け）
 
 ```powershell
 Invoke-Expression (Invoke-RestMethod -Uri "http://192.168.0.90:3000/DEV_INTELLIGENT/AI-Driven-Development-template/raw/branch/main/install.ps1")
 ```
 
-このコマンドを実行すると、Giteaから自動的に最新の [.agents](file:///C:/Users/dxpro/skills-codelab/.agents) フォルダがダウンロードされ、既存プロジェクトへ安全に展開・マージされます。
+このコマンドを実行すると、自動的に最新の `.agents` フォルダがダウンロードされ、既存プロジェクトへ安全に展開・マージされます。
 
 ### 新規セットアップ（クローンによる開始）
 
 1. リポジトリをクローンまたはダウンロード
 
-
+**GitHub から:**
 ```bash
-git clone http://[IP_ADDRESS]/DEV_INTELLIGENT/AI-Driven-Development-template.git
+git clone https://github.com/KotaSugiki/AI-Driven-Development-template.git
+cd AI-Driven-Development-template
+```
+
+**Gitea から（社内）:**
+```bash
+git clone http://192.168.0.90:3000/DEV_INTELLIGENT/AI-Driven-Development-template.git
 cd AI-Driven-Development-template
 ```
 
