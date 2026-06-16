@@ -2,39 +2,18 @@
 # 既存のプロジェクトに .agents フォルダを展開します。
 #
 # 使い方:
-#   GitHub から直接実行（推奨・外部向け）:
+#   GitHub から直接実行:
 #     Invoke-Expression (Invoke-RestMethod -Uri "https://raw.githubusercontent.com/KotaSugiki/AI-Driven-Development-template/main/install.ps1")
 #
-#   Gitea から直接実行（社内向け）:
-#     Invoke-Expression (Invoke-RestMethod -Uri "http://192.168.0.90:3000/DEV_INTELLIGENT/AI-Driven-Development-template/raw/branch/main/install.ps1")
-#
-#   ローカルで実行（ソース指定）:
-#     .\install.ps1 -Source github
-#     .\install.ps1 -Source gitea
+#   ローカルで実行:
+#     .\install.ps1
 
-param(
-    [ValidateSet("github", "gitea")]
-    [string]$Source = "github"  # デフォルトは GitHub
-)
-
-# ソースに応じた ZIP ダウンロード URL を設定
-switch ($Source) {
-    "github" {
-        $zipUrl = "https://github.com/KotaSugiki/AI-Driven-Development-template/archive/refs/heads/main.zip"
-        $sourceName = "GitHub"
-    }
-    "gitea" {
-        $zipUrl = "http://192.168.0.90:3000/DEV_INTELLIGENT/AI-Driven-Development-template/archive/main.zip"
-        $sourceName = "Gitea"
-    }
-}
+$zipUrl = "https://github.com/KotaSugiki/AI-Driven-Development-template/archive/refs/heads/main.zip"
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host " AI駆動開発テンプレート インストーラー" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "ソース: $sourceName ($zipUrl)" -ForegroundColor Gray
 Write-Host ""
 
 # 一時ファイル名を定義
@@ -43,7 +22,7 @@ $tempDir = "ai-template-temp"
 
 try {
     # ステップ 1: ZIP アーカイブのダウンロード
-    Write-Host "[1/3] テンプレートを ${sourceName} からダウンロードしています..." -ForegroundColor Cyan
+    Write-Host "[1/3] テンプレートを GitHub からダウンロードしています..." -ForegroundColor Cyan
     Invoke-WebRequest -Uri $zipUrl -OutFile $tempZip -UseBasicParsing
     Write-Host "  ✅ ダウンロード完了" -ForegroundColor Green
 
@@ -91,7 +70,7 @@ try {
     Write-Host ""
     Write-Host "トラブルシューティング:" -ForegroundColor Yellow
     Write-Host "  - インターネット接続を確認してください" -ForegroundColor Yellow
-    Write-Host "  - $sourceName のリポジトリにアクセスできるか確認してください" -ForegroundColor Yellow
+    Write-Host "  - GitHub のリポジトリにアクセスできるか確認してください" -ForegroundColor Yellow
     Write-Host "  - PowerShell を管理者権限で実行してみてください" -ForegroundColor Yellow
 } finally {
     # 一時ファイルとフォルダのクリーンアップ
